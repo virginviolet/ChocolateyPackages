@@ -8,6 +8,6 @@ $ENV:ProcessName = $ProcessName
 
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 Start-Job -InitializationScript {Import-Module -Name "$ENV:ChocolateyInstall\extensions\chocolatey-misc-helpers\Start-WaitandStopActual.ps1"} -ScriptBlock {Start-WaitandStopActual} | Out-Null
-Start-Sleep 10
+Start-Sleep 300
 Remove-Item ENV:\ProcessName
 }
