@@ -7,12 +7,12 @@
 # installed and abort if not. Example: Test-Dependency "dependency-windows10"
 # You would typically run this sometime before Install-ChocolateyPackage
 
-function Test-Dependency($dependency){
-if (Test-Path -Path $env:ChocolateyInstall\lib\$dependency){
+function Test-Dependency($Dependency){
+if (Test-Path -Path $env:ChocolateyInstall\lib\$Dependency){
     return $True
-	Write-Host "  ** Dependency $dependency found." -ForeGround Green
+	Write-Output "  ** Dependency $Dependency found."
     } else {
 	  return $False
-	  Write-Host "  ** Dependency $dependency NOT found." -ForeGround Red
+	  Write-Output "  ** Dependency $Dependency NOT found."
     }
 }

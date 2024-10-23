@@ -9,7 +9,7 @@ function Start-CheckandStop($ProcessName){
 $GLOBAL:ProcessWasRunning=$False
 
 if((Get-Process "$ProcessName" -ea SilentlyContinue) -eq $Null){ 
-    Write-Host "  ** $ProcessName currently NOT running." -ForeGround Green
+    Write-Output "  ** $ProcessName currently NOT running."
   }else{ 
     Write-Warning "  ** Stopping $ProcessName process..."
 	$GLOBAL:ProcessWasRunning = $True
