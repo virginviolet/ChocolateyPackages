@@ -24,13 +24,15 @@ function Start-WaitAndStop {
 
     # Run the actual waiting and stopping in a separate job
     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+    Write-Output "  ** Waiting to stop '$ProcessName'..."
     Start-Job -Name WaitAndStop -InitializationScript { . "$ENV:ChocolateyInstall\extensions\chocolatey-misc-helpers\Start-WaitAndStopActual.ps1" } `
         -ScriptBlock { Start-WaitAndStopActual } `
         > $null
-    # Short pause to ensure the other script has had the time start start and
-    # grab the environment variables, before we remove the environment variables
-    Start-Sleep 1
+    
     # Remove the environment variables
+    # Short pause to ensure the other script has had the time start start and
+    # grab the environment variables
+    Start-Sleep 1
     Remove-Item Env:\ProcessName
     Remove-Item Env:\Seconds
     Remove-Item Env:\Interval
