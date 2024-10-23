@@ -2,6 +2,16 @@
 
 $scriptRoot = Split-Path -Path $MyInvocation.MyCommand.Definition
 
+# LogLevel enum used for Start-CheckAndStop
+enum MiscHelpers_LogLevel {
+    None
+    Success
+    Error
+    Warning
+    Verbose
+    Debug
+}
+
 $publicFunctions = @(
     'Enable-AutoPin',
 	'Show-ToastMessage',
