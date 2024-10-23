@@ -7,7 +7,7 @@ function Start-WaitAndStop {
     param (
         # Parameter help description
         [Parameter(mandatory = $true)][string]$ProcessName,
-        [Parameter(mandatory = $false)][int]$Seconds = 290,
+        [Parameter(mandatory = $false)][int]$Seconds = 300,
         [Parameter(mandatory = $false)][int]$Interval = 3
     )
     # It's not possible to send parameters to the Start-WaitAndStopActual
