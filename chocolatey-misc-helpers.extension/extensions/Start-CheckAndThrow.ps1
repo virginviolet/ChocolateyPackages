@@ -3,7 +3,7 @@
 # Checks for and throws install if $ProcessName is running
 # Good for aborting installation of portable programs if they are running. Otherwise Chocolatey might think the package installed but you're still running the old version. This is an alternative to just stopping the process.
 
-function Start-CheckandThrow($ProcessName){
+function Start-CheckAndThrow($ProcessName){
 
 if ((Get-Process "$ProcessName" -ea SilentlyContinue) -eq $Null){
     return

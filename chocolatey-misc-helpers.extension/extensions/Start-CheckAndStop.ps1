@@ -5,7 +5,7 @@
 # $ProcessFullPath is the full path and executable of the stopped process.
 # i.e. to re-run the process after an upgrade use: if ($ProcessWasRunning -eq "True") {&"$ProcessFullPath"}
 
-function Start-CheckandStop($ProcessName){
+function Start-CheckAndStop($ProcessName){
 $GLOBAL:ProcessWasRunning=$False
 
 if((Get-Process "$ProcessName" -ea SilentlyContinue) -eq $Null){ 

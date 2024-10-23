@@ -7,10 +7,10 @@ $publicFunctions = @(
 	'Show-ToastMessage',
     'Show-Patreon',
 	'Show-PayPal',
-    'Start-CheckandStop',
-	'Start-CheckandThrow',
-	'Start-WaitandStop',
-	'Start-WaitandStopActual',
+    'Start-CheckAndStop',
+	'Start-CheckAndThrow',
+	'Start-WaitAndStop',
+	'Start-WaitAndStopActual',
     'Test-Dependency',
     'Test-URL'
 )
