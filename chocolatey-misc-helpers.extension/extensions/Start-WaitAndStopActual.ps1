@@ -27,7 +27,7 @@ function Start-WaitAndStopActual {
       Get-Process "$ProcessName" > $null
       Write-Debug "Stopping '$ProcessName' process..."
       Stop-Process -ProcessName "$ProcessName" -Force > $null
-      Write-Output "Stopped '$ProcessName' process ."
+      Write-Output "Stopped '$ProcessName' process."
       $processFound = $true
       break
     } catch {}
@@ -35,6 +35,7 @@ function Start-WaitAndStopActual {
   }
   Until ($loopCount -eq $maxLoops)
 
+  # Output debug message if process is not found within the time limit.
   if ($processFound -eq $false) {
     Write-Debug "Search timed out.`nProcess '$ProcessName' not found."
   } 
