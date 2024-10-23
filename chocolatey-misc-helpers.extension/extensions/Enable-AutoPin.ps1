@@ -14,13 +14,13 @@ function Enable-AutoPin{
 # Its existence is for backward compatibility, actual function NULLIFIED.
 Write-Host "  ** The AutoPin function has been retired. It does not work. Please inform the package maintainer!" -ForeGround Red
 return
-if (Test-Path -Path $ENV:ChocolateyInstall\.chocolatey\$ENV:ChocolateyPackageName.$ENV:ChocolateyPackageVersion){
-	New-Item -Path "$ENV:ChocolateyInstall\.chocolatey\$ENV:ChocolateyPackageName.$ENV:ChocolateyPackageVersion\" -ItemType "file" -Name ".pin" -Value "This package has been AutoPinned." -Force
-	Out-File -FilePath "$ENV:ChocolateyInstall\.chocolatey\$ENV:ChocolateyPackageName.$ENV:ChocolateyPackageVersion\.pin" -InputObject "This package has been AutoPinned." -Force
-	Set-ItemProperty -Path "$ENV:ChocolateyInstall\.chocolatey\$ENV:ChocolateyPackageName.$ENV:ChocolateyPackageVersion\.pin" -Name IsReadOnly -Value $true
+if (Test-Path -Path $Env:ChocolateyInstall\.chocolatey\$Env:ChocolateyPackageName.$Env:ChocolateyPackageVersion){
+	New-Item -Path "$Env:ChocolateyInstall\.chocolatey\$Env:ChocolateyPackageName.$Env:ChocolateyPackageVersion\" -ItemType "file" -Name ".pin" -Value "This package has been AutoPinned." -Force
+	Out-File -FilePath "$Env:ChocolateyInstall\.chocolatey\$Env:ChocolateyPackageName.$Env:ChocolateyPackageVersion\.pin" -InputObject "This package has been AutoPinned." -Force
+	Set-ItemProperty -Path "$Env:ChocolateyInstall\.chocolatey\$Env:ChocolateyPackageName.$Env:ChocolateyPackageVersion\.pin" -Name IsReadOnly -Value $true
    }
-if (Test-Path -Path $ENV:ChocolateyInstall\.chocolatey\$ENV:ChocolateyPackageName.$ENV:ChocolateyPackageVersion\.pin){
-    Write-Host "  ** $ENV:ChocolateyPackageName v$ENV:ChocolateyPackageVersion AutoPinned." -ForeGround Green
+if (Test-Path -Path $Env:ChocolateyInstall\.chocolatey\$Env:ChocolateyPackageName.$Env:ChocolateyPackageVersion\.pin){
+    Write-Host "  ** $Env:ChocolateyPackageName v$Env:ChocolateyPackageVersion AutoPinned." -ForeGround Green
    } else {
      Write-Host "  ** Error creating AutoPin. Package NOT pinned." -ForeGround Red
    }
