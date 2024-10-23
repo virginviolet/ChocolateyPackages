@@ -10,7 +10,6 @@ function Start-WaitAndStop {
         [Parameter(mandatory = $false)][int]$Seconds = 290,
         [Parameter(mandatory = $false)][int]$Interval = 3
     )
-    Write-Debug "Start-WaitAndStop started."
     # It's not possible to send parameters to the Start-WaitAndStopActual
     # from outside its scope, so we temporarily set variables in the Env scope
     $ENV:ProcessName = $ProcessName
@@ -25,7 +24,7 @@ function Start-WaitAndStop {
 
     # Run the actual waiting and stopping in a separate job
     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-    Start-Job -Name WaitAndStop -InitializationScript { $StartWaitAndStopActualScriptPath = Join-Path "$Env:WorkingDirPath" -ChildPath 'Start-WaitAndStopActual.ps1'; . "$StartWaitAndStopActualScriptPath" } `
+    Start-Job -Name WaitAndStop -InitializationScript { . "$ENV:ChocolateyInstall\extensions\chocolatey-misc-helpers\Start-WaitAndStopActual.ps1" } `
         -ScriptBlock { Start-WaitAndStopActual } `
         > $null
     # Short pause to ensure the other script has had the time start start and
@@ -38,30 +37,3 @@ function Start-WaitAndStop {
     Remove-Item Env:\VerbPref
     Remove-Item Env:\DebugPref
 }
-
-###### Debug start
-# $VerbosePreference = 'Continue'
-# $DebugPreference = 'Continue'
-Start-WaitAndStop "notepad++" -Seconds 6
-
-<#
-# Let's imitate installation or something.
-# Report every second what's happened in Start-WaitAndStopActual since last last report
-Write-Verbose "Report test."
-$Loop = 1
-Do {
-    Receive-WaitAndStop
-    Start-Sleep 1
-    Write-Host "..."
-    $Loop++
-}
-Until ($Loop -gt 10) {
-} #>
-
-Write-Verbose "Let's write report."
-$currentPath = (Get-Location).Path
-$ReceiveWaitAndStopScriptPath = Join-Path $currentPath -ChildPath 'Receive-WaitAndStop.ps1'
-. "$ReceiveWaitAndStopScriptPath"
-# Write report when it's finished (prevents further actions in the meanwhile)
-Receive-WaitAndStop -Wait
-Write-Debug "Finished."
