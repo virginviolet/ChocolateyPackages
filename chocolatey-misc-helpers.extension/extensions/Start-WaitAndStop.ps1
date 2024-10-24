@@ -24,7 +24,7 @@ function Start-WaitAndStop {
 
     # Run the actual waiting and stopping in a separate job
     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-    Write-Output "  ** Waiting to stop '$ProcessName'..."
+    Write-Warning "Waiting to stop '$ProcessName'..."
     Start-Job -Name WaitAndStop -InitializationScript { . "$ENV:ChocolateyInstall\extensions\chocolatey-misc-helpers\Start-WaitAndStopActual.ps1" } `
         -ScriptBlock { Start-WaitAndStopActual } `
         > $null

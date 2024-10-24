@@ -25,7 +25,7 @@ function Start-WaitAndStopActual {
     Start-Sleep $Interval
     try {
       Get-Process "$ProcessName" > $null
-      Write-Debug "Stopping '$ProcessName' process..."
+      Write-Warning "Stopping '$ProcessName' process..."
       Stop-Process -ProcessName "$ProcessName" -Force > $null
       Write-Output "Stopped '$ProcessName' process."
       $processFound = $true
